@@ -1,0 +1,4 @@
+1. in VendingMachine.java line 64, the for loop iterates through i <= NUM_SLOTS when it should be i < NUM_SLOTS to prevent an
+   ArrayIndexOutOfBoundsException. Attempting to initialize a VendingMachine object for any test would throw an ArrayIndexOutOfBoundsException. I diagnosed the fault by reading the output error message. I remedied the error by changing it from i <= NUM_SLOTS to i < NUM_SLOTS
+2. in VendingMachine.java line 161 (insertMoney if statement), the if statement was comparing amount < 1 instead of amount < 0, which should be allowed 
+   as stated in the comments for the method (throw vendingMachineException if amount < 0). This caused valid amounts, such as 0.25, to throw an exception. My test that exposed it was a test case (0.25) for testInsertMoney_Valid. Since the test was failing at that value, I was able to find the fault. I changed the if statement from amount < 1 to amount < 0.
