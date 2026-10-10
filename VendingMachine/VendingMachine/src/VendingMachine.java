@@ -142,9 +142,10 @@ public class VendingMachine {
 		int slotIndex = getSlotIndex(code);
 		VendingMachineItem item = itemArray[slotIndex];
 		itemArray[slotIndex] = null;
-		if (item == null) {
-			throw new VendingMachineException(SLOT_MESSAGE + code + IS_EMPTY_MESSAGE);
-		}
+		// INJECTED FAULT FOR COVERAGE EXPERIMENT (removed null check)
+		// if (item == null) {
+		// throw new VendingMachineException(SLOT_MESSAGE + code + IS_EMPTY_MESSAGE);
+		// }
 		return item;
 	}
 
@@ -158,8 +159,9 @@ public class VendingMachine {
 	 *                                 amount is < 0
 	 */
 	public void insertMoney(double amount) throws VendingMachineException {
-		if (amount < 0)
-			throw new VendingMachineException(VendingMachine.INVALID_AMOUNT_MESSAGE);
+		// INJECTED FAULT FOR COVERAGE EXPERIMENT (removed validation)
+		// if (amount < 0)
+		// throw new VendingMachineException(VendingMachine.INVALID_AMOUNT_MESSAGE);
 		this.balance += amount;
 	}
 
