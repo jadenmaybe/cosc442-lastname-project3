@@ -142,10 +142,9 @@ public class VendingMachine {
 		int slotIndex = getSlotIndex(code);
 		VendingMachineItem item = itemArray[slotIndex];
 		itemArray[slotIndex] = null;
-		// INJECTED FAULT FOR COVERAGE EXPERIMENT (removed null check)
-		// if (item == null) {
-		// throw new VendingMachineException(SLOT_MESSAGE + code + IS_EMPTY_MESSAGE);
-		// }
+		if (item == null) {
+			throw new VendingMachineException(SLOT_MESSAGE + code + IS_EMPTY_MESSAGE);
+		}
 		return item;
 	}
 
@@ -159,9 +158,8 @@ public class VendingMachine {
 	 *                                 amount is < 0
 	 */
 	public void insertMoney(double amount) throws VendingMachineException {
-		// INJECTED FAULT FOR COVERAGE EXPERIMENT (removed validation)
-		// if (amount < 0)
-		// throw new VendingMachineException(VendingMachine.INVALID_AMOUNT_MESSAGE);
+		if (amount < 0)
+			throw new VendingMachineException(VendingMachine.INVALID_AMOUNT_MESSAGE);
 		this.balance += amount;
 	}
 
@@ -195,8 +193,7 @@ public class VendingMachine {
 	public boolean makePurchase(String code) {
 		boolean returnCode = false;
 		VendingMachineItem item = getItem(code);
-		// INJECTED FAULT FOR COVERAGE EXPERIMENT (>= changed to >)
-		if ((item != null) && (this.balance > item.getPrice())) {
+		if ((item != null) && (this.balance >= item.getPrice())) {
 			removeItem(code);
 			this.balance -= item.getPrice();
 			returnCode = true;
