@@ -1,0 +1,8 @@
+LLM used: Gemini 3
+Transcript is located in VendingMachineAI folder in .pdf form (because it wasn't letting me create a permalink)
+
+The quality of the generated tests is decent, as they all work as intended and reach both 100% branch and statement coverage. The generated tests almost reached 100% branch and statement coverage, just from my initial prompt. Though, it produced a static error in one test, likely due to a misunderstanding in a comment from the provided .java files. 
+Both my test suite and the AI-generated test suite reached 100% branch and statement coverage. Some of the AI-generated tests go into more depth than I did when testing a specific methods. For example, the LLM created "testAllValidSlotBoundsAddAndGet()", which tests each individual slot of the Vending Machine in one test, where I tested only one case (if the slot is null or not).
+The tests were already solid from the initial prompt, so the following prompts I gave made minimal improvements and were namely for fixing small errors and ensuring requirements were hit, as well as asking questions to understand the LLM's "thought process". For example, I informed the LLM that insertMoney allowed values >= 0, causing it to fix a boundary test that was failing. 
+A majority of the assertions were strong and had valid reasons to be there. The closest thing to "redundant" was the LLM generating tests with assertions which triple-check states, such as an assertTrue, assertEquals, and assertNull in the same test.
+AI is very much capable of generating tests, but as usual, needs supervision for any revisions that need to be made. 
